@@ -2,10 +2,11 @@
 
 namespace Blog\ModelBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Timestable abstract class to define created behavior
+ * Timestable abstract class to define created and updated behavior
  *
  * @ORM\MappedSuperclass
  */
@@ -14,40 +15,64 @@ abstract class Timestampable
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $createAt;
-
-
-    /**
-     * construct
-     */
-    public function __construct()
-    {
-        $this->createAt = new \DataTime();
-    }
+    private $createdAt;
 
     /**
-     * Set createAt
+     * @var \DateTime
      *
-     * @param \DateTime $createAt
-     *
-     * @return Author
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    public function setCreateAt($createAt)
+    private $updatedAt;
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Timestampable
+     */
+    public function setCreatedAt($createdAt)
     {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createAt
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getCreateAt()
+    public function getCreatedAt()
     {
-        return $this->createAt;
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Timestampable
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

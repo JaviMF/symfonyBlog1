@@ -2,6 +2,7 @@
 
 namespace Blog\ModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,7 +34,7 @@ class Author extends Timestampable
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="posts", mappedBy="author", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="post", mappedBy="author", cascade={"remove"})
      */
     private $posts;
 
@@ -42,7 +43,7 @@ class Author extends Timestampable
      */
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+       $this->posts = new ArrayCollection();
     }
 
     /**
@@ -82,11 +83,11 @@ class Author extends Timestampable
     /**
      * Add posts
      *
-     * @param \Blog\ModelBundle\Entity\posts $posts
+     * @param \Blog\ModelBundle\Entity\post $posts
      *
      * @return Author
      */
-    public function addPost(posts $posts)
+    public function addPost(post $posts)
     {
         $this->posts[] = $posts;
 
@@ -96,9 +97,9 @@ class Author extends Timestampable
     /**
      * Remove posts
      *
-     * @param \Blog\ModelBundle\Entity\posts $posts
+     * @param \Blog\ModelBundle\Entity\post $posts
      */
-    public function removePost(posts $posts)
+    public function removePost(post $posts)
     {
         $this->posts->removeElement($posts);
     }
