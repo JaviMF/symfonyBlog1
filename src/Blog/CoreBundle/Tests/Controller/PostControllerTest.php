@@ -32,11 +32,11 @@ class PostControllerTest extends WebTestCase
         $client = static::createClient();
 
         /** @var Post $post */
-        $post = $client->getContainer()->get('doctrine')->getManager()->getRepository('ModelBundle:post')->findFirst();
+        $post = $client->getContainer()->get('doctrine')->getManager()->getRepository('ModelBundle:Post')->findFirst();
 
         $crawler = $client->request('GET', '/'.$post->getSlug());
 
-        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response wsa not successful');
+        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response whs not successfull');
 
         $this->assertEquals($post->getTitle(), $crawler->filter('h1')->text(), 'Invalid post title');
     }
