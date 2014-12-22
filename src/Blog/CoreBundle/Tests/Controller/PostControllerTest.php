@@ -36,7 +36,7 @@ class PostControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/'.$post->getSlug());
 
-        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response whs not successfull');
+        $this->assertTrue($client->getResponse()->isSuccessful(), 'The response whas not successfull');
 
         $this->assertEquals($post->getTitle(), $crawler->filter('h1')->text(), 'Invalid post title');
     }
