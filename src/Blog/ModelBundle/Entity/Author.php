@@ -43,7 +43,7 @@ class Author extends Timestampable
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="post", mappedBy="author", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={"remove"})
      */
     private $posts;
 
@@ -116,11 +116,11 @@ class Author extends Timestampable
     /**
      * Add posts
      *
-     * @param \Blog\ModelBundle\Entity\post $posts
+     * @param \Blog\ModelBundle\Entity\Post $posts
      *
      * @return Author
      */
-    public function addPost(post $posts)
+    public function addPost(Post $posts)
     {
         $this->posts[] = $posts;
 
@@ -130,9 +130,9 @@ class Author extends Timestampable
     /**
      * Remove posts
      *
-     * @param \Blog\ModelBundle\Entity\post $posts
+     * @param \Blog\ModelBundle\Entity\Post $posts
      */
-    public function removePost(post $posts)
+    public function removePost(Post $posts)
     {
         $this->posts->removeElement($posts);
     }

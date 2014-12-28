@@ -32,7 +32,7 @@ class AuthorController extends Controller
             )
         );
 
-        if (null === $author){
+        if (null === $author) {
             throw $this->createNotFoundException('Author whs not found');
         }
 
